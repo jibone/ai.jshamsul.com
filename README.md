@@ -1,3 +1,3 @@
-# LocalAI
+# ai.jshamsul.com
 
-Experimental AI interface for Gemini Nano in Chrome
+Experimental AI interface playground.

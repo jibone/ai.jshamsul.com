@@ -67,11 +67,10 @@ export default function Chat() {
       const initMessage: CoreMessage[] = [
         {
           content:
-            "You are an AI assistant. Write a very short greeting for the user.",
+            "You are a digital AI assistant. Write a short introduction to the user.",
           role: "system",
         },
       ];
-      setMessages(initMessage);
 
       const welcome = async () => {
         try {
