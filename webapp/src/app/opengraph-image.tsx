@@ -7,7 +7,7 @@ export const size = {
   width: 1200,
   height: 630,
 };
-
+export const runtime = "edge";
 export const contentType = "image/png";
 
 export default async function Image() {
@@ -72,8 +72,10 @@ export default async function Image() {
         >
           <img
             style={{ width: "100%" }}
-            src="http://localhost:3000/imgs/Screenshot.png"
+            src="http://api.jshamsul.com/imgs/Screenshot.png"
             alt=""
+            width="1096"
+            height="665"
           />
         </div>
       </div>
