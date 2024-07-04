@@ -1,113 +1,331 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState, useEffect } from "react";
+import { ArrowRightIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import { SparklesIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
+
+function checkBrowser() {
+  let raw = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
+  return raw ? parseInt(raw[2], 10) : 0;
+}
+
+function BrowserError() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="rounded-md bg-red-50 p-4 border border-red-300">
+      <div className="flex">
+        <div className="flex-shrink-0">
+          <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
+        </div>
+        <div className="ml-3">
+          <h3 className="text-sm font-medium text-red-800">
+            Error: Browser not supported.
+          </h3>
+          <div className="mt-2 text-sm text-red-700">
+            <p>
+              Your browser is not supported. Please switch to Chrome (
+              <a
+                href="https://www.google.com/chrome/dev/?extra=devchannel"
+                className="underline"
+              >
+                Dev
+              </a>{" "}
+              or{" "}
+              <a
+                href="https://www.google.com/chrome/canary/"
+                className="underline"
+              >
+                Canary
+              </a>
+              )
+            </p>
+            <p className="mt-4">Please check the requirements steps below.</p>
+          </div>
         </div>
       </div>
+    </div>
+  );
+}
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+function ChromeVerError() {
+  return (
+    <div className="rounded-md bg-red-50 p-4 border border-red-300">
+      <div className="flex">
+        <div className="flex-shrink-0">
+          <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
+        </div>
+        <div className="ml-3">
+          <h3 className="text-sm font-medium text-red-800">
+            Error: Chrome version not supported.
+          </h3>
+          <div className="mt-2 text-sm text-red-700">
+            <p>
+              Please update your chrome to version 127 or later, or switch to
+              Chrome{" "}
+              <a
+                href="https://www.google.com/chrome/dev/?extra=devchannel"
+                className="underline"
+              >
+                Dev
+              </a>{" "}
+              or{" "}
+              <a
+                href="https://www.google.com/chrome/canary/"
+                className="underline"
+              >
+                Canary
+              </a>
+            </p>
+            <p className="mt-4">Please check the requirements steps below.</p>
+          </div>
+        </div>
       </div>
+    </div>
+  );
+}
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+function PromptApiError() {
+  return (
+    <div className="rounded-md bg-red-50 p-4 border border-red-300">
+      <div className="flex">
+        <div className="flex-shrink-0">
+          <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
+        </div>
+        <div className="ml-3">
+          <h3 className="text-sm font-medium text-red-800">
+            Error: Prompt API not enabled
+          </h3>
+          <div className="mt-2 text-sm text-red-700">
+            <p>
+              Prompt API is an experimental Chrome flag that needs to be enable.
+            </p>
+            <p className="mt-4">Please check the requirements steps below.</p>
+          </div>
+        </div>
       </div>
-    </main>
+    </div>
+  );
+}
+
+function AiNotReadyError({ message }: { message: string }) {
+  return (
+    <div className="rounded-md bg-red-50 p-4 border border-red-300">
+      <div className="flex">
+        <div className="flex-shrink-0">
+          <XCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
+        </div>
+        <div className="ml-3">
+          <h3 className="text-sm font-medium text-red-800">
+            Error: Fail to load AI Model
+          </h3>
+          <div className="mt-2 text-sm text-red-700">
+            <p>Failed with the following message: {message}</p>
+            <p className="mt-4">Please check the requirements steps below.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function AllGood() {
+  return (
+    <div className="rounded-md bg-green-50 p-4 border border-green-300">
+      <div className="flex">
+        <div className="flex-shrink-0">
+          <XCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+        </div>
+        <div className="ml-3">
+          <h3 className="text-sm font-medium text-green-800">
+            All good: System check pass
+          </h3>
+          <div className="mt-2 text-sm text-green-700">
+            <p>Click start to begin.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function RequirementsInfo() {
+  return (
+    <div className="mt-4">
+      <div className="text-black font-semibold py-2">Requirement Steps</div>
+
+      <ul className="border-b border-slate-200">
+        <li className="border-t border-slate-200 py-2 flex gap-2">
+          <div>
+            <CheckCircleIcon className="h-10 w-10 text-green-400" />
+          </div>
+          <div>
+            <div className="font-medium">Chrome version &gt; 127</div>
+            <div className="text-md text-slate-500">The demo</div>
+          </div>
+        </li>
+
+        <li className="border-t border-slate-200 py-2 flex gap-2">
+          <div>
+            <CheckCircleIcon className="h-10 w-10 text-green-400" />
+          </div>
+          <div>
+            <div className="font-medium">
+              chrome://flags/#prompt-api-for-gemini-nano
+            </div>
+            <div className="text-md text-slate-500">
+              Select &apos;Enable&apos;
+            </div>
+          </div>
+        </li>
+
+        <li className="border-t border-slate-200 py-2 flex gap-2">
+          <div>
+            <CheckCircleIcon className="h-10 w-10 text-green-400" />
+          </div>
+          <div>
+            <div className="font-medium">
+              chrome://flags/#optimization-guide-on-device-model
+            </div>
+            <div className="text-md text-slate-500">
+              Select &apos;Enabled BypassPrefRequirement&apos;
+            </div>
+          </div>
+        </li>
+
+        <li className="border-t border-slate-200 py-2 flex gap-2">
+          <div>
+            <CheckCircleIcon className="h-10 w-10 text-green-400" />
+          </div>
+          <div>
+            <div className="font-medium">chrome://components</div>
+            <div className="text-md text-slate-500">
+              Click &apos;Check for Update&apos; on Optimization Guide On Device
+              Model to download the model. If you don&apos;t see Optimization
+              Guide, ensure you have set the flags correctly above, relaunch
+              your browser, and refresh the page.
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  );
+}
+
+export default function Home() {
+  const [init, setInit] = useState(true);
+  const [validBrowser, setValidBrower] = useState(false);
+  const [validChromeVer, setValidChromeVer] = useState(false);
+  const [validPromptAPI, setValidPromptAPI] = useState(false);
+  const [aiReady, setAiReady] = useState(false);
+  const [aiModelError, setAiModelError] = useState("");
+
+  useEffect(() => {
+    // check for chrome browser
+    const version = checkBrowser();
+    if (version) {
+      setValidBrower(true);
+    }
+    // check for chrome version
+    if (version > 127) {
+      setValidChromeVer(true);
+    }
+
+    // check if window.ai is activated
+    if ("ai" in globalThis) {
+      setValidPromptAPI(true);
+    }
+
+    // check if LLM model is loaded
+    const checkAI = async () => {
+      try {
+        // @ts-expect-error
+        return await ai?.canCreateGenericSession();
+      } catch {}
+    };
+    checkAI().then((state) => {
+      if (state === "readily") {
+        setAiReady(true);
+        localStorage.setItem("system-check", "pass");
+      } else {
+        setAiModelError(state);
+      }
+    });
+
+    setInit(false);
+  }, [validBrowser, validChromeVer, validPromptAPI, aiReady]);
+
+  return (
+    <div className="flex items-center justify-center h-screen">
+      <div className="bg-slate-100 border border-slate-200 p-4 w-5/6 lg:w-3/6">
+        <div className="flex items-center mb-4">
+          <SparklesIcon className="h-8 w-8 text-purple-500" />{" "}
+          <span className="ml-2 text-slate-600 leading-relaxed font-semibold">
+            ai.jshamsul.com
+          </span>
+        </div>
+        <div className="prose prose-slate !max-w-none">
+          <p>
+            Google announced that they are putting Gemini Nano — a lightweight
+            Gemini Based LLM into Chrome and will be exposing the interface on
+            the browser with <code>window.ai</code>.
+          </p>
+          <p>
+            This demo uses the{" "}
+            <a href="https://sdk.vercel.ai/docs/introduction" target="_blank">
+              Vercel’s AI SDK
+            </a>{" "}
+            with{" "}
+            <a href="https://github.com/jeasonstudio/chrome-ai" target="_blank">
+              Chrome-ai
+            </a>{" "}
+            provider, which makes it easy to call the Gemini Nano Prompt API
+            from the browser.
+          </p>
+          <p>
+            Follow{" "}
+            <a href="https://x.com/jibone" target="_blank">
+              @jibone
+            </a>{" "}
+            on Twitter (now known as X) for more updates.
+          </p>
+        </div>
+
+        {init ? null : (
+          <div className="mt-4">
+            {!validBrowser ? (
+              <BrowserError />
+            ) : !validChromeVer ? (
+              <ChromeVerError />
+            ) : !validPromptAPI ? (
+              <PromptApiError />
+            ) : !aiReady ? (
+              <AiNotReadyError message={aiModelError} />
+            ) : (
+              <AllGood />
+            )}
+          </div>
+        )}
+
+        {!init && !aiReady ? <RequirementsInfo /> : null}
+
+        <div className="mt-4">
+          {aiReady ? (
+            <Link
+              href="/dashboard"
+              className="py-2 px-3 bg-slate-900 rounded-md text-slate-200 flex w-fit items-center hover:bg-slate-900/80"
+            >
+              Start <ArrowRightIcon className="ml-2 h-4 w-4" />
+            </Link>
+          ) : (
+            <Link
+              href="/about"
+              className="py-2 px-3 bg-slate-600 rounded-md text-slate-200 flex w-fit items-center hover:bg-slate-900/80"
+            >
+              Read more about it <ArrowRightIcon className="ml-2 h-4 w-4" />
+            </Link>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
