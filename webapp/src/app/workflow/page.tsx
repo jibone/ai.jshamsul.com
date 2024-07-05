@@ -2,7 +2,7 @@ import Layout from "@/ui/Layout";
 
 export default function Workflow() {
   return (
-    <Layout title="Workflow (Work in progress)" sideNavItem="Workflow">
+    <Layout title="Workflow" sideNavItem="Workflow">
       <div className="prose prose-slate">
         <p>Work in progress</p>
         <p>
