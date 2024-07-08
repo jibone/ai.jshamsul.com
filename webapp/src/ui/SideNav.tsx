@@ -49,8 +49,8 @@ export default function SideNav({ currentItem }: { currentItem: string }) {
     return name === currentItem;
   };
   return (
-    <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-slate-200 px-6 pb-4">
-      <div className="flex h-16 shrink-0 items-center text-slate-600">
+    <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-4 border-r">
+      <div className="flex h-16 shrink-0 items-center text-slate-900">
         <SparklesIcon className="h-8 w-8 text-purple-500" />{" "}
         <span className="ml-2 leading-relaxed font-semibold">
           ai.jshamsul.com
@@ -66,7 +66,7 @@ export default function SideNav({ currentItem }: { currentItem: string }) {
                     href={item.href}
                     className={classNames(
                       isCurrentItem(item.name)
-                        ? "bg-slate-500 text-slate-200"
+                        ? "bg-slate-900 text-slate-100"
                         : "text-slate-600 hover:bg-slate-100 hover:text-slate-600",
                       "group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6",
                     )}
@@ -74,8 +74,8 @@ export default function SideNav({ currentItem }: { currentItem: string }) {
                     <item.icon
                       className={classNames(
                         isCurrentItem(item.name)
-                          ? "text-slate-200"
-                          : "text-slate-600 group-hover:text-slate-600",
+                          ? "text-slate-100"
+                          : "text-slate-900 group-hover:text-slate-600",
                         "h-6 w-6 shrink-0",
                       )}
                       aria-hidden="true"
