@@ -8,7 +8,7 @@ export default function Summarize() {
         <div className="">
           <Link
             href="/summarize/text"
-            className="p-2 rounded-md bg-slate-100 border border-slate-200 flex group hover:bg-slate-800 hover:border-slate-900"
+            className="p-2 rounded-md border border-slate-200 flex group hover:bg-slate-800 hover:border-slate-900"
           >
             <div className="flex-col">
               <div className="font-semibold text-slate-700 group-hover:text-slate-100">
@@ -23,7 +23,7 @@ export default function Summarize() {
         <div className="">
           <Link
             href="/summarize/web"
-            className="p-2 rounded-md bg-slate-100 border border-slate-200 flex group hover:bg-slate-800 hover:border-slate-900"
+            className="p-2 rounded-md border border-slate-200 flex group hover:bg-slate-800 hover:border-slate-900"
           >
             <div className="flex-col">
               <div className="font-semibold text-slate-700 group-hover:text-slate-100">
@@ -38,7 +38,7 @@ export default function Summarize() {
         <div className="">
           <Link
             href="/summarize/doc"
-            className="p-2 rounded-md bg-slate-100 border border-slate-200 flex group hover:bg-slate-800 hover:border-slate-900"
+            className="p-2 rounded-md border border-slate-200 flex group hover:bg-slate-800 hover:border-slate-900"
           >
             <div className="flex-col">
               <div className="font-semibold text-slate-700 group-hover:text-slate-100">
