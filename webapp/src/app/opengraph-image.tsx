@@ -72,7 +72,7 @@ export default async function Image() {
         >
           <img
             style={{ width: "100%" }}
-            src="http://api.jshamsul.com/imgs/Screenshot.png"
+            src="http://ai.jshamsul.com/imgs/Screenshot.png"
             alt=""
             width="1096"
             height="665"
