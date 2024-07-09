@@ -28,9 +28,7 @@ export default function SummerizeText() {
 
   useEffect(() => {
     const syscheck = localStorage.getItem("system-check");
-    if (syscheck === undefined || syscheck !== "pass") {
-      router.push("/");
-    }
+    if (syscheck === undefined || syscheck !== "pass") router.push("/");
   }, [router]);
 
   const handleSummerize = async () => {
