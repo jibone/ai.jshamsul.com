@@ -31,11 +31,15 @@ export default function ChromeAIChat() {
   const [clearBtnDisabled, setClearBtnDisabled] = useState(false);
 
   useEffect(() => {
-    // @ts-expect-error
-    const session = ai.createTextSession();
-    session.then((t: any) => {
-      setAISession(t);
-    });
+    try {
+      // @ts-expect-error
+      const session = ai.createTextSession();
+      session.then((t: any) => {
+        setAISession(t);
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }, [setAISession]);
 
   const handleSend = async () => {
@@ -47,13 +51,24 @@ export default function ChromeAIChat() {
 
     const messageList = [...messages, { role: "user", content: userPrompt }];
 
-    const stream = aiSession.promptStreaming(userPrompt);
-    setMessages([
-      ...messageList,
-      { role: "assistant", content: "Thinking..." },
-    ]);
-    for await (const chunk of stream) {
-      setMessages([...messageList, { role: "assistant", content: chunk }]);
+    try {
+      const stream = aiSession.promptStreaming(userPrompt);
+      setMessages([
+        ...messageList,
+        { role: "assistant", content: "Thinking..." },
+      ]);
+      for await (const chunk of stream) {
+        setMessages([...messageList, { role: "assistant", content: chunk }]);
+      }
+    } catch (e) {
+      console.log(e);
+      setMessages([
+        ...messageList,
+        {
+          role: "assistant",
+          content: "Error loading model, check brower settings...",
+        },
+      ]);
     }
 
     setSendBtnDisabled(false);
