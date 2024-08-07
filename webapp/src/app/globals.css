@@ -8,6 +8,33 @@
   }
 }
 
+.prose-custom {
+  @apply font-iaWriterQuattro
+    prose
+    prose-slate
+    prose-headings:text-lg
+    prose-headings:font-medium
+    prose-headings:text-black
+    prose-p:text-slate-700
+    prose-strong:font-medium
+    prose-ol:text-slate-700
+    prose-ul:text-slate-700
+    prose-em:font-iaWriterQuattroItalic
+    prose-code:font-iaWriterMono
+    prose-code:font-normal
+    prose-figcaption:text-sm
+    prose-table:text-slate-700
+    prose-thead:text-left
+    prose-pre:font-iaWriterMono
+    prose-a:decoration-purple-500
+    prose-a:decoration-2
+    prose-a:underline-offset-2
+    hover:prose-a:decoration-purple-300
+    hover:prose-a:text-black
+    prose-blockquote:font-iaWriterQuattroItalic
+    prose-blockquote:text-slate-600;
+}
+
 .debug {
   @apply border border-red-500;
 }
