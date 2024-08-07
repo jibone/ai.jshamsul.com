@@ -48,6 +48,38 @@ export default function ChromeAIInfoPage() {
             Model to download the model.
           </li>
         </ul>
+
+        <h2>The API</h2>
+
+        <p>The APIs are actually quite simple.</p>
+
+        <p>
+          Check if the browser is supported.
+          <pre className="!-mt-0">
+            <code>await window.ai.canCreateTextSession();</code>
+          </pre>
+        </p>
+
+        <p>
+          Create a text session.
+          <pre className="!-mt-0">
+            <code>const session = await window.ai.createTextSession();</code>
+          </pre>
+        </p>
+
+        <p>
+          Execute the prompt.
+          <pre className="!-mt-0">
+            <code>{`await session.prompt("Why is Ruby better than Python?");`}</code>
+          </pre>
+        </p>
+
+        <p>
+          Execute the prompt and returns a ReadableStream object
+          <pre className="!-mt-0">
+            <code>{`await session.promptStreaming("Why is Ruby better than Python?");`}</code>
+          </pre>
+        </p>
       </div>
     </LayoutContainer>
   );
