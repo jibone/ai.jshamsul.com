@@ -18,7 +18,7 @@ export default function Footer() {
         </a>
         <span>/</span>
         <a
-          href="https://github.com/jibone"
+          href="https://github.com/jibone/ai.jshamsul.com"
           className="text-slate-500 hover:text-black hover:underline hover:underline-offset-2 hover:decoration-2 hover:decoration-purple-500"
         >
           Github
