@@ -28,7 +28,7 @@ export default function ChatInput() {
         <form onSubmit={event => {
           handleSubmit(event, {
             body: {
-              option: option
+              promptOpt: option
             }
           })
         }}>
