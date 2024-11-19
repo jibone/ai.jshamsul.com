@@ -1,20 +1,32 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext } from "react";
+import { useChat } from "ai/react";
 
 interface SembangContextInterface {
-  chatInput: string;
-  setChatInput: (value: string) => void;
+  messages: any;
+  setMessages: any;
+  input: any;
+  handleInputChange: any;
+  handleSubmit: any;
+
 }
 
 const SembangMallamContext = createContext<SembangContextInterface | undefined>(undefined)
 
 export function SembangMallamProvider({ children }: { children: React.ReactNode }) {
-  const [chatInput, setChatInput] = useState("")
+  const { messages, setMessages, input, handleInputChange, handleSubmit } = useChat({
+    api: "/api/sembang-mallam"
+  });
+
+  // const [chatInput, setChatInput] = useState("")
 
   return (
     <SembangMallamContext.Provider
       value={{
-        chatInput,
-        setChatInput
+        messages,
+        setMessages,
+        input,
+        handleInputChange,
+        handleSubmit
       }}
     >
       {children}
