@@ -24,6 +24,10 @@ export const sembangOption = [
     prompt: "dengan loghat bahasa Kelantan"
   },
   {
+    label: "Loghat Terengganu",
+    prompt: "dengan loghat bahasa Terengganu"
+  },
+  {
     label: "Bahasa Sabah",
     prompt: "dengan bahasa Sabah"
   },
