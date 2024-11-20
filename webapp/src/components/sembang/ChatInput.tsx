@@ -1,10 +1,10 @@
 import { KeyboardEvent, useState } from "react";
 import { PaperAirplaneIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { useSembangMallamContext } from "@/contexts/SembangMallamContext";
-import { sembangOption } from "@/app/config/sembang";
+import { sembangSystemPrompt } from "@/config/sembangSystemPrompt";
 
 export default function ChatInput() {
-  const [option, setOption] = useState(sembangOption[0].prompt)
+  const [option, setOption] = useState(sembangSystemPrompt[0].prompt)
   const { setMessages, input, handleInputChange, handleSubmit } = useSembangMallamContext()
 
   const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
@@ -19,7 +19,7 @@ export default function ChatInput() {
   }
 
   const handleSelectOption = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setOption(sembangOption[parseInt(event.target.value)].prompt)
+    setOption(sembangSystemPrompt[parseInt(event.target.value)].prompt)
   }
 
   return (
@@ -62,7 +62,7 @@ export default function ChatInput() {
                 onChange={handleSelectOption}
                 className="text-sm mt-2 block w-fit rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600"
               >
-                {sembangOption.map((c, i) => (
+                {sembangSystemPrompt.map((c, i) => (
                   <option key={i} value={i}>{c.label}</option>
                 ))}
               </select>
